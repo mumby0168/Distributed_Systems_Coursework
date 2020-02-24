@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DistSysACW.Controllers
 {
+    [Route("api/talkback/")]
     public class TalkBackController : BaseController
     {
         /// <summary>
@@ -23,7 +24,8 @@ namespace DistSysACW.Controllers
         public string Get()
         {
             #region TASK1
-            // TODO: add api/talkback/hello response
+
+            return "Hello Wolrd";
 
             #endregion
         }
@@ -32,9 +34,9 @@ namespace DistSysACW.Controllers
         public IActionResult Get([FromQuery]int[] integers)
         {
             #region TASK1
-            // TODO: 
-            // sort the integers into ascending order
-            // send the integers back as the api/talkback/sort response
+
+            Array.Sort(integers);
+            return Ok(integers);
 
             #endregion
         }

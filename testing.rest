@@ -1,0 +1,10 @@
+### Task 1 Tests
+
+@devUrl = "http://127.0.0.1:5000/api/talkback"
+@testUrl = ""
+
+@url = {{devUrl}}
+
+
+### Hello Task 1.1
+GET {{url}}/hello
