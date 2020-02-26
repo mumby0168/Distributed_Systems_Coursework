@@ -1,0 +1,23 @@
+@url = http://distsysacw.azurewebsites.net/2961549/api
+
+
+### hello
+
+GET {{url}}/talkback/hello
+
+### sort
+
+GET {{url}}/talkback/sort/?integers=19&integers=6&integers=8
+
+### check username
+GET {{url}}/User/New/?username=billy
+
+### create user
+
+
+POST {{url}}/User/New
+Content-Type: application/application/json 
+
+{
+    "username": "billy"
+}
