@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DistSysACW.Names;
 using DistSysACW.Repositorys;
 using Microsoft.AspNetCore.Identity.UI.V4.Pages.Internal.Account;
 using Microsoft.Extensions.Logging;
@@ -38,19 +39,21 @@ namespace DistSysACW.Middleware
                     return;
                 }
                 
-                if (stringKey == "Admin")
+                if (stringKey == Roles.Admin)
                 {
                     logger.LogInformation($"User given admin role with username {user.Username}");
-                    var claim = new Claim(ClaimTypes.Role, "Admin");
+                    var claim = new Claim(ClaimTypes.Role, Roles.Admin);
                     var name = new Claim(ClaimTypes.Name, user.Username);
-                    context.User.AddIdentity(new ClaimsIdentity(new []{claim, name}));
+                    var keyClaim = new Claim(ClaimTypes.NameIdentifier, stringKey);
+                    context.User.AddIdentity(new ClaimsIdentity(new []{claim, name, keyClaim}));
                 }
-                else if (stringKey == "Standard")
+                else if (stringKey == Roles.User)
                 {
                     logger.LogInformation($"User given standard role with username {user.Username}");
-                    var claim = new Claim(ClaimTypes.Role, "Standard");
+                    var claim = new Claim(ClaimTypes.Role, Roles.User);
                     var name = new Claim(ClaimTypes.Name, user.Username);
-                    context.User.AddIdentity(new ClaimsIdentity(new []{claim, name}));
+                    var keyClaim = new Claim(ClaimTypes.NameIdentifier, stringKey);
+                    context.User.AddIdentity(new ClaimsIdentity(new []{claim, name, keyClaim}));
                 }
             }
             

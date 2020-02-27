@@ -73,5 +73,10 @@ namespace DistSysACW.Repositorys
             
             _context.Users.Remove(user);
         }
+
+        public Task<User> GetUserByUsernameAsync(string username)
+        {
+            return _context.Users.FirstOrDefaultAsync(o => o.Username == username);
+        }
     }
 }

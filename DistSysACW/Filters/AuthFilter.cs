@@ -27,6 +27,15 @@ namespace DistSysACW.Filters
                             return;
                         }
                     }
+
+                    var stand = roles.Contains(Names.Roles.User);
+
+                    if (roles.Contains(Names.Roles.Admin) && stand == false)
+                    {
+                        context.HttpContext.Response.StatusCode = 401;
+                        context.Result = new JsonResult("Unauthorized. Admin access only.");
+                        return;
+                    }
                     throw new UnauthorizedAccessException();
                 }
             }

@@ -1,4 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Net;
+using System.Threading.Tasks;
+using DistSysACW.Exceptions;
+using DistSysACW.Names;
 using DistSysACW.Repositorys;
 
 namespace DistSysACW.Services
@@ -36,6 +40,46 @@ namespace DistSysACW.Services
             var res = await _repository.DoesUsernameExistAsync(username);
             if (res) return "";
             return await _repository.CreateUserAsync(username);
+        }
+
+        public async Task<bool> RemoveUser(string username, string apiKey)
+        {
+            var result = await _repository.GetUserAsync(apiKey);
+            if (result.Username == username)
+            {
+                await _repository.RemoveUserAsync(apiKey);
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task UpdateRole(string username, string role)
+        {
+            //TODO: check statement in spec stating all other error cases should return what is in the catch. What could be the other error cases?
+            try
+            {
+                var user = await _repository.GetUserByUsernameAsync(username);
+                if (user is null)
+                {
+                    throw new HttpStatusCodeException("NOT DONE: Username does not exist", HttpStatusCode.BadRequest);
+                }
+
+                if (role != Roles.User || role != Roles.Admin)
+                {
+                    throw new HttpStatusCodeException("NOT DONE: Role does not exist", HttpStatusCode.BadRequest);
+                }
+            }
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(HttpStatusCodeException))
+                    throw e;
+                else
+                {
+                    throw new HttpStatusCodeException("NOT DONE: An error occured", HttpStatusCode.BadRequest);
+                }
+            }
+            
         }
     }
 }

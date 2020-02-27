@@ -1,6 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using DistSysACW.Dto;
 using DistSysACW.Models;
+using DistSysACW.Names;
 using DistSysACW.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DistSysACW.Controllers
@@ -38,5 +43,20 @@ namespace DistSysACW.Controllers
 
             return Ok(key);
         }
+
+        [Authorize(Roles = Roles.All)]
+        [HttpDelete("RemoveUser")]
+        public async Task<IActionResult> RemoveUser([FromQuery] string username)
+        {
+            string key = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            return Ok(await _userService.RemoveUser(username, key));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeRole([FromBody] ChangeRoleDto dto)
+        {
+            
+        }
+        
     }
 }
