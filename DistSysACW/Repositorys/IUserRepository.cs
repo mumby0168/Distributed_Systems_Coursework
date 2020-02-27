@@ -17,5 +17,6 @@ namespace DistSysACW.Repositorys
 
         Task RemoveUserAsync(string apiKey);
         Task<User> GetUserByUsernameAsync(string username);
+        Task UpdateAsync(User user);
     }
 }

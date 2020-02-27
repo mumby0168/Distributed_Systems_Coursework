@@ -34,6 +34,7 @@ namespace DistSysACW.Repositorys
             }
             
             await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
             
             return key;
         }
@@ -72,11 +73,17 @@ namespace DistSysACW.Repositorys
             }
             
             _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
         }
 
         public Task<User> GetUserByUsernameAsync(string username)
         {
             return _context.Users.FirstOrDefaultAsync(o => o.Username == username);
+        }
+
+        public async Task UpdateAsync(User user)
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

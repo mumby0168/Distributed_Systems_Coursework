@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using DistSysACW.Exceptions;
+using DistSysACW.Models;
 using DistSysACW.Names;
 using DistSysACW.Repositorys;
 
@@ -69,6 +70,9 @@ namespace DistSysACW.Services
                 {
                     throw new HttpStatusCodeException("NOT DONE: Role does not exist", HttpStatusCode.BadRequest);
                 }
+
+                user.Role = (UserRole)Enum.Parse(typeof(UserRole), role);
+                await _repository.UpdateAsync(user);
             }
             catch (Exception e)
             {
