@@ -29,12 +29,5 @@ namespace DistSysACW.Models
     // TODO: You may find it useful to add code here for Logging
     #endregion
 
-    public static class UserDatabaseAccess
-    {
-        #region Task3 
-        // TODO: Make methods which allow us to read from/write to the database 
-        #endregion
-    }
-
 
 }
