@@ -15,6 +15,7 @@ namespace DistSysACW.Models
             
         }
         
+        [Key]
         public string ApiKey { get; set; }
         
         public string Username { get; set; }
