@@ -11,6 +11,8 @@ namespace DistSysACW.Repositorys
 
         Task<bool> DoesUserExistAsync(string apiKey, string username);
 
+        Task<bool> DoesUsernameExistAsync(string username);
+
         Task<User> GetUserAsync(string apiKey);
 
         Task RemoveUserAsync(string apiKey);

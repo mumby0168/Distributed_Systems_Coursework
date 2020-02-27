@@ -1,5 +1,6 @@
 ﻿using System;
 using DistSysACW.Repositorys;
+using DistSysACW.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,8 @@ namespace DistSysACW
             services.AddDbContext<Models.UserContext>();
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+                        
 
             services.AddMvc(options => {
                 options.AllowEmptyInputInBodyModelBinding = true;

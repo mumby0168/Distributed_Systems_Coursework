@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using DistSysACW.Models;
 using Microsoft.EntityFrameworkCore;
@@ -18,11 +19,19 @@ namespace DistSysACW.Repositorys
         {
             var key = Guid.NewGuid().ToString();
 
+            var users = await _context.Users.ToListAsync();
+
             var user = new User()
             {
                 Username = username,
                 ApiKey = key
             };
+            
+            //TODO: in spec but not in step by step guide
+            if (!users.Any())
+            {
+                user.Role = UserRole.Admin;
+            }
             
             await _context.Users.AddAsync(user);
             
@@ -38,6 +47,12 @@ namespace DistSysACW.Repositorys
         public async Task<bool> DoesUserExistAsync(string apiKey, string username)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.ApiKey == apiKey && u.Username == username);
+            return user != null;
+        }
+
+        public async Task<bool> DoesUsernameExistAsync(string username)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
             return user != null;
         }
 
