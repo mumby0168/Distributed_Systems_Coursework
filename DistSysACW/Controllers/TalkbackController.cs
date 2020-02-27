@@ -20,17 +20,17 @@ namespace DistSysACW.Controllers
         public TalkBackController(Models.UserContext context) : base(context) { }
 
 
-        [ActionName("Hello")]
+        [HttpGet("Hello")]
         public string Get()
         {
             #region TASK1
 
-            return "Hello Wolrd";
+            return "Hello World";
 
             #endregion
         }
 
-        [ActionName("Sort")]
+        [HttpGet("Sort")]
         public IActionResult Get([FromQuery]int[] integers)
         {
             #region TASK1
