@@ -36,16 +36,12 @@ namespace DistSysACW.Controllers
             
             SHA1CryptoServiceProvider provider = new SHA1CryptoServiceProvider();
             provider.Initialize();
-            var bytes = Encoding.UTF8.GetBytes(message);
+            var bytes = Encoding.ASCII.GetBytes(message);
             var encoded = provider.ComputeHash(bytes, 0, bytes.Length);
-            
-            var builder = new StringBuilder();
-            foreach (var b in bytes)
-            {
-                builder.Append(b.ToString("x2"));
-            }
 
-            return Ok(builder.ToString());
+            var str = BitConverter.ToString(encoded);
+            str = str.Replace("-", "");
+            return Ok(str);
 
         }
         
@@ -59,16 +55,12 @@ namespace DistSysACW.Controllers
             
             SHA256CryptoServiceProvider provider = new SHA256CryptoServiceProvider();
             provider.Initialize();
-            var bytes = Encoding.UTF8.GetBytes(message);
+            var bytes = Encoding.ASCII.GetBytes(message);
             var encoded = provider.ComputeHash(bytes, 0, bytes.Length);
             
-            var builder = new StringBuilder();
-            foreach (var b in bytes)
-            {
-                builder.Append(b.ToString("x2"));
-            }
-
-            return Ok(builder.ToString());
+            var str = BitConverter.ToString(encoded);
+            str = str.Replace("-", "");
+            return Ok(str);
 
         }
         
