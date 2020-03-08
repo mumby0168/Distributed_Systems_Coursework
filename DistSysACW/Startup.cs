@@ -1,4 +1,5 @@
 ﻿using System;
+using DistSysACW.Middleware;
 using DistSysACW.Repositorys;
 using DistSysACW.Services;
 using Microsoft.AspNetCore.Builder;
@@ -25,6 +26,7 @@ namespace DistSysACW
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddTransient<StatusCodeExceptionMiddleware>();
                         
 
             services.AddMvc(options => {
