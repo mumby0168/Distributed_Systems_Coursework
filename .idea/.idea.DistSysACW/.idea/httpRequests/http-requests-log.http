@@ -1,0 +1,18 @@
+﻿GET https://localhost:6000/api/talkback/sort?integers=1&integers=5
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET https://localhost:6000/api/talkback/sort?integers=1&integers=5
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:6000/api/talkback/sort?integers=1&integers=5
+Accept: */*
+Cache-Control: no-cache
+
+###
+
