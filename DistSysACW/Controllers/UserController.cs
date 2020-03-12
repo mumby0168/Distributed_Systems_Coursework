@@ -56,7 +56,7 @@ namespace DistSysACW.Controllers
             return Ok(await _userService.RemoveUser(username, key));
         }
 
-        [HttpPost]
+        [HttpPost("ChangeRole")]
         public async Task<IActionResult> ChangeRole([FromBody] ChangeRoleDto dto)
         {
             await _userService.UpdateRole(dto.Username, dto.Role);

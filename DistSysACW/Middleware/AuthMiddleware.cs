@@ -39,7 +39,7 @@ namespace DistSysACW.Middleware
                     return;
                 }
                 
-                if (stringKey == Roles.Admin)
+                if (user.Role.ToString() == Roles.Admin)
                 {
                     logger.LogInformation($"User given admin role with username {user.Username}");
                     var claim = new Claim(ClaimTypes.Role, Roles.Admin);
@@ -47,7 +47,7 @@ namespace DistSysACW.Middleware
                     var keyClaim = new Claim(ClaimTypes.NameIdentifier, stringKey);
                     context.User.AddIdentity(new ClaimsIdentity(new []{claim, name, keyClaim}));
                 }
-                else if (stringKey == Roles.User)
+                else if (user.Role.ToString() == Roles.User)
                 {
                     logger.LogInformation($"User given standard role with username {user.Username}");
                     var claim = new Claim(ClaimTypes.Role, Roles.User);

@@ -1,3 +1,5 @@
+using System.Net.Http;
+
 namespace DistSysACWClient
 {
     public static class User
@@ -17,6 +19,18 @@ namespace DistSysACWClient
             Username = string.Empty;
             ApiKey = string.Empty;
         }
-        
+
+        public static bool IsSet()
+        {
+            return !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(ApiKey);
+        }
+
+        public static HttpClient CreateClient()
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("ApiKey", ApiKey);
+            return client;
+        }
+
     }
 }

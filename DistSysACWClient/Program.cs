@@ -55,12 +55,27 @@ namespace DistSysACWClient
                     handled = true;
                 }
 
+                if (input.Contains("User Set"))
+                {
+                    await userHandler.UserSet(input);
+                    handled = true;
+                }
+
+                if (input.Contains("User Role"))
+                {
+                    await userHandler.ChangeUserRole(input);
+                    handled = true;
+                }
+
                 if (!handled)
                 {
                     switch (input)
                     {
                         case "TalkBack Hello":
                             await talkBackHandler.Hello();
+                            break;
+                        case "User Delete":
+                            await userHandler.DeleteUser();
                             break;
                         default:
                             Console.WriteLine("Input not recognised");
