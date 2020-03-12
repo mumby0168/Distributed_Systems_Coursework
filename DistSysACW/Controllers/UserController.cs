@@ -1,11 +1,14 @@
 ﻿using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using DistSysACW.Dto;
+using DistSysACW.Exceptions;
 using DistSysACW.Models;
 using DistSysACW.Names;
 using DistSysACW.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DistSysACW.Controllers
@@ -27,6 +30,7 @@ namespace DistSysACW.Controllers
         }
 
         [HttpPost("new")]
+        [AllowAnonymous]
         public async Task<IActionResult> CheckUserPost([FromBody] string username)
         {
             if (string.IsNullOrEmpty(username))
@@ -38,7 +42,7 @@ namespace DistSysACW.Controllers
             var key = await _userService.CreateUser(username);
             if (string.IsNullOrEmpty(key))
             {
-                return Forbid("Oops. This username is already in use. Please try again with a new username.");
+                throw new HttpStatusCodeException("Oops. This username is already in use. Please try again with a new username.", HttpStatusCode.Forbidden);
             }
 
             return Ok(key);

@@ -27,6 +27,12 @@ namespace DistSysACWClient.Helpers
                 var str = await result.Content.ReadAsStringAsync();
                 return HttpResult<string>.Create(str, result.StatusCode, result);
             }
+
+            if (result.StatusCode == HttpStatusCode.BadRequest)
+            {
+                var str = await result.Content.ReadAsStringAsync();
+                return HttpResult<string>.Create(str, result.StatusCode, result);
+            }
             return HttpResult<string>.Create(null, result.StatusCode, result);
         }
     }

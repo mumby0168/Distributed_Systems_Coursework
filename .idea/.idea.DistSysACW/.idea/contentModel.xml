@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\billy\.Rider2019.3\config\scratches" t="IncludeRecursive" />
-    <e p="C:\Users\billy\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\billy\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_DistSysACW.1385235042.00" t="ExcludeRecursive" />
-    <e p="C:\Users\billy\source\repos\Distributed_Systems_Coursework" t="IncludeFlat">
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_DistSysACW.172043539.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="DistSysACW" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
@@ -72,10 +71,17 @@
       <e p="DistSysACWClient" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="DistSysACWClient.csproj" t="IncludeRecursive" />
+        <e p="Handlers" t="Include">
+          <e p="TalkbackHandler.cs" t="Include" />
+          <e p="UserHandler.cs" t="Include" />
+        </e>
         <e p="Helpers" t="Include">
           <e p="HttpExtensions.cs" t="Include" />
           <e p="HttpResult.cs" t="Include" />
           <e p="IHttpResult.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="User.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -85,7 +91,6 @@
           </e>
         </e>
         <e p="Program.cs" t="Include" />
-        <e p="TalkbackHandler.cs" t="Include" />
       </e>
       <e p="packages" t="ExcludeRecursive" />
     </e>
