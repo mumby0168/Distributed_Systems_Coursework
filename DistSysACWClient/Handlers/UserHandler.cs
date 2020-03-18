@@ -59,7 +59,7 @@ namespace DistSysACWClient
             }
         }
 
-        public async Task UserSet(string input)
+        public Task UserSet(string input)
         {
             input = input.Replace("User Set ", "");
             var keyMatch = _guidRegex.Match(input);
@@ -85,6 +85,8 @@ namespace DistSysACWClient
             {
                 Console.WriteLine("Please enter a valid username and key e.g. User Set <username> <valid-guid>");
             }
+            
+            return Task.CompletedTask;
         }
 
         public async Task DeleteUser()

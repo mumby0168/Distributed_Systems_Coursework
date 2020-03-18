@@ -68,6 +68,18 @@ namespace DistSysACWClient
                     handled = true;
                 }
 
+                if (input.Contains("Protected SHA1"))
+                {
+                    await protectedHandler.Sha1(input);
+                    handled = true;
+                }
+                
+                if (input.Contains("Protected SHA256"))
+                {
+                    await protectedHandler.Sha256(input);
+                    handled = true;
+                }
+
                 if (!handled)
                 {
                     switch (input)
