@@ -121,8 +121,8 @@ namespace DistSysACWClient
                 return;
             }
             
-            var split = Regex.Split(input, @"[a-zA-Z]+");
-            if (split.Length != 2)
+            var matches = Regex.Matches(input, @"[a-zA-Z]+");
+            if (matches.Count != 2)
             {
                 Console.WriteLine("Please enter both a username and a role to change to.");
                 return;
@@ -131,7 +131,7 @@ namespace DistSysACWClient
             var client = User.CreateClient();
             Console.WriteLine("... please wait");
             var res = await client.PostAsync($"{_address}/user/changerole", new StringContent(
-                JsonConvert.SerializeObject(new {username = split[0], Role = split[1] }), Encoding.Default, "application/json"));
+                JsonConvert.SerializeObject(new {username = matches[0].Value, Role = matches[1].Value }), Encoding.Default, "application/json"));
 
             if (res.IsSuccessStatusCode)
             {
@@ -141,6 +141,10 @@ namespace DistSysACWClient
             else if (res.StatusCode == HttpStatusCode.Unauthorized)
             {
                 Console.WriteLine("User Set does not have permissions to make perform this action.");
+            }
+            else if (res.StatusCode == HttpStatusCode.BadRequest)
+            {
+                Console.WriteLine(await res.Content.ReadAsStringAsync());
             }
         }
         
