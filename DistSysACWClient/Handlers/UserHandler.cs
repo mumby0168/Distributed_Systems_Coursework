@@ -111,7 +111,7 @@ namespace DistSysACWClient
 
         public async Task ChangeUserRole(string input)
         {
-            input = input.Replace("Change Role", "");
+            input = input.Replace("User Role ", "");
 
             if (!User.IsSet())
             {
@@ -119,7 +119,7 @@ namespace DistSysACWClient
                 return;
             }
             
-            var split = Regex.Split(input, @"\w+");
+            var split = Regex.Split(input, @"[a-zA-Z]+");
             if (split.Length != 2)
             {
                 Console.WriteLine("Please enter both a username and a role to change to.");

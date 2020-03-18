@@ -70,8 +70,10 @@
       <e p="DistSysACW.sln" t="IncludeFlat" />
       <e p="DistSysACWClient" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Constants.cs" t="Include" />
         <e p="DistSysACWClient.csproj" t="IncludeRecursive" />
         <e p="Handlers" t="Include">
+          <e p="ProtectedHandler.cs" t="Include" />
           <e p="TalkbackHandler.cs" t="Include" />
           <e p="UserHandler.cs" t="Include" />
         </e>

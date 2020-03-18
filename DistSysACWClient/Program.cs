@@ -22,6 +22,7 @@ namespace DistSysACWClient
             const string address = "http://localhost:5000/api";
             var talkBackHandler = new TalkBackHandler(address);
             var userHandler = new UserHandler(address);
+            var protectedHandler = new ProtectedHandler(address);
             Console.WriteLine("Hello. What would you like to do?");
             var input = Console.ReadLine();
             bool handled = false;
@@ -76,6 +77,9 @@ namespace DistSysACWClient
                             break;
                         case "User Delete":
                             await userHandler.DeleteUser();
+                            break;
+                        case "Protected Hello":
+                            await protectedHandler.Hello();
                             break;
                         default:
                             Console.WriteLine("Input not recognised");
