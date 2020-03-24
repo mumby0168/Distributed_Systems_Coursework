@@ -66,7 +66,7 @@ namespace DistSysACW.Services
                     throw new HttpStatusCodeException("NOT DONE: Username does not exist", HttpStatusCode.BadRequest);
                 }
 
-                if (role != Roles.User || role != Roles.Admin)
+                if (role != Roles.User && role != Roles.Admin)
                 {
                     throw new HttpStatusCodeException("NOT DONE: Role does not exist", HttpStatusCode.BadRequest);
                 }

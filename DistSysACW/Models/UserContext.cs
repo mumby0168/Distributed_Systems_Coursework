@@ -20,7 +20,7 @@ namespace DistSysACW.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=DistSysACW;");
-            optionsBuilder.UseInMemoryDatabase();
+            optionsBuilder.UseSqlServer("Server=localhost,1401; Database=DistACW; User=sa; Password=Mumby12345;");
         }
     }
 }

@@ -24,7 +24,8 @@ namespace DistSysACW.Repositorys
             var user = new User()
             {
                 Username = username,
-                ApiKey = key
+                ApiKey = key,
+                Role = UserRole.User
             };
             
             //TODO: in spec but not in step by step guide
