@@ -80,6 +80,12 @@ namespace DistSysACWClient
                     handled = true;
                 }
 
+                if (input.Contains("Protected Sign"))
+                {
+                    await protectedHandler.Sign(input);
+                    handled = true;
+                }
+
                 if (!handled)
                 {
                     switch (input)
@@ -92,6 +98,9 @@ namespace DistSysACWClient
                             break;
                         case "Protected Hello":
                             await protectedHandler.Hello();
+                            break;
+                        case "Protected Get PublicKey":
+                            await protectedHandler.StorePublicKey();
                             break;
                         default:
                             Console.WriteLine("Input not recognised");

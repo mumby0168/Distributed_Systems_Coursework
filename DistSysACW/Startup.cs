@@ -27,6 +27,8 @@ namespace DistSysACW
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<StatusCodeExceptionMiddleware>();
+
+            services.AddSingleton<IRsaProvider, RsaProvider>();
                         
 
             services.AddMvc(options => {

@@ -31,6 +31,8 @@ namespace DistSysACWClient
             client.DefaultRequestHeaders.Add("ApiKey", ApiKey);
             return client;
         }
+        
+        public static string PublicKey { get; set; }
 
     }
 }

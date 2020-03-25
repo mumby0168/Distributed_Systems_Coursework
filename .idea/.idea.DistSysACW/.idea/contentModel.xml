@@ -62,7 +62,9 @@
           <e p="UserRepository.cs" t="Include" />
         </e>
         <e p="Services" t="Include">
+          <e p="IRsaProvider.cs" t="Include" />
           <e p="IUserService.cs" t="Include" />
+          <e p="RsaProvider.cs" t="Include" />
           <e p="UserService.cs" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
@@ -72,6 +74,9 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Constants.cs" t="Include" />
         <e p="DistSysACWClient.csproj" t="IncludeRecursive" />
+        <e p="Extensions" t="Include">
+          <e p="RSACryptoExtensions.cs" t="Include" />
+        </e>
         <e p="Handlers" t="Include">
           <e p="ProtectedHandler.cs" t="Include" />
           <e p="TalkbackHandler.cs" t="Include" />

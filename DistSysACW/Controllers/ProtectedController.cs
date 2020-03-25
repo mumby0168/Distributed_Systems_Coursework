@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using DistSysACW.Names;
+using DistSysACW.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +14,11 @@ namespace DistSysACW.Controllers
     [Route("api/protected/")]
     public class ProtectedController : ControllerBase
     {
-        public ProtectedController()
+        private readonly IRsaProvider _rsaProvider;
+
+        public ProtectedController(IRsaProvider rsaProvider)
         {
-            
+            _rsaProvider = rsaProvider;
         }
 
         [HttpGet("hello")]
@@ -63,6 +66,18 @@ namespace DistSysACW.Controllers
             return Ok(str);
 
         }
-        
+
+
+        [HttpGet("getpublickey")]
+        [Authorize(Roles = Roles.All)]
+        public IActionResult PublicKey() => Ok(_rsaProvider.PublicKey);
+
+        [HttpGet("sign")]
+        [Authorize(Roles = Roles.All)]
+        public IActionResult Sign([FromQuery]string message)
+        {
+            return Ok(_rsaProvider.Sha1Sign(message));
+        }
+
     }
 }
