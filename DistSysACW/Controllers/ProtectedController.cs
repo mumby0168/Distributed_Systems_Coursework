@@ -1,8 +1,10 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using DistSysACW.Names;
 using DistSysACW.Services;
@@ -77,6 +79,40 @@ namespace DistSysACW.Controllers
         public IActionResult Sign([FromQuery]string message)
         {
             return Ok(_rsaProvider.Sha1Sign(message));
+        }
+
+        [HttpGet("addfifty")]
+        [Authorize(Roles = Roles.Admin)]
+        public IActionResult AddFifty([FromQuery] string encryptedInteger, [FromQuery] string encryptedsymkey,
+            [FromQuery] string encryptedIV)
+
+        {
+            var integerBytes = _rsaProvider.Decrypt(encryptedInteger);
+            var iv = _rsaProvider.Decrypt(encryptedIV);
+            var key = _rsaProvider.Decrypt(encryptedsymkey);
+
+            var integer = BitConverter.ToInt16(integerBytes);
+            integer += 50;
+            string encryptedResult;
+            AesCryptoServiceProvider aesProvider = new AesCryptoServiceProvider();
+            aesProvider.Key = key;
+            aesProvider.IV = iv;
+            ICryptoTransform encryptor = aesProvider.CreateEncryptor();
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                {
+                    using (StreamWriter sw = new StreamWriter(cs))
+                    {
+                        sw.Write(integer);
+                    }
+
+                    encryptedResult = BitConverter.ToString(ms.ToArray());
+                }
+            }
+            
+
+            return Ok(encryptedResult);
         }
 
     }

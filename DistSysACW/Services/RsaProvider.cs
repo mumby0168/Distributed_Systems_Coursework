@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using CoreExtensions;
@@ -23,6 +24,12 @@ namespace DistSysACW.Services
         {
             var signed = _provider.SignData(Encoding.ASCII.GetBytes(message), new SHA1CryptoServiceProvider());
             return BitConverter.ToString(signed);
+        }
+
+        public byte[] Decrypt(string hexValue)
+        {
+            byte[] data = hexValue.Split('-').Select(b => Convert.ToByte(b, 16)).ToArray();
+            return _provider.Decrypt(data, true);
         }
     }
 }

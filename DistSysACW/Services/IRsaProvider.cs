@@ -5,5 +5,6 @@ namespace DistSysACW.Services
         string PublicKey { get; }
 
         string Sha1Sign(string message);
+        byte[] Decrypt(string hexValue);
     }
 }
