@@ -29,6 +29,7 @@ namespace DistSysACW
             services.AddTransient<StatusCodeExceptionMiddleware>();
 
             services.AddSingleton<IRsaProvider, RsaProvider>();
+            services.AddTransient<ILogRepository, LogRepository>();
                         
 
             services.AddMvc(options => {

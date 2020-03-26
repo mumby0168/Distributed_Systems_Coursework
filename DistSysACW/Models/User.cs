@@ -12,7 +12,7 @@ namespace DistSysACW.Models
 
         public User()
         {
-            
+            Logs = new List<Log>();
         }
         
         [Key]
@@ -21,6 +21,18 @@ namespace DistSysACW.Models
         public string Username { get; set; }
         
         public UserRole Role { get; set; }
+        
+        public ICollection<Log> Logs { get; set; }
+
+        public Log CreateLog(string message)
+        {
+            return new Log
+            {
+                UserId = ApiKey,
+                LogString = message,
+                LogDateTime = DateTime.Now
+            };
+        }
         
         #endregion
     }

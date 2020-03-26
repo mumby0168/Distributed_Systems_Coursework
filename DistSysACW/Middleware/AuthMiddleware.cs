@@ -21,11 +21,9 @@ namespace DistSysACW.Middleware
             _next = next;
         }
 
-        public async Task InvokeAsync(HttpContext context, IUserRepository userRepository, ILogger<AuthMiddleware> logger)
+        public async Task InvokeAsync(HttpContext context, IUserRepository userRepository, ILogger<AuthMiddleware> logger, ILogRepository logRepository)
         {
             #region Task5
-            
-            //TODO: refactor this.
 
             var key = context.Request.Headers["ApiKey"];
             if (key.Any())
@@ -46,6 +44,8 @@ namespace DistSysACW.Middleware
                     var name = new Claim(ClaimTypes.Name, user.Username);
                     var keyClaim = new Claim(ClaimTypes.NameIdentifier, stringKey);
                     context.User.AddIdentity(new ClaimsIdentity(new []{claim, name, keyClaim}));
+                    var log = user.CreateLog($"User Requested: {context.Request.Path.Value}");
+                    await logRepository.AddAsync(log);
                 }
                 else if (user.Role.ToString() == Roles.User)
                 {
@@ -54,6 +54,8 @@ namespace DistSysACW.Middleware
                     var name = new Claim(ClaimTypes.Name, user.Username);
                     var keyClaim = new Claim(ClaimTypes.NameIdentifier, stringKey);
                     context.User.AddIdentity(new ClaimsIdentity(new []{claim, name, keyClaim}));
+                    var log = user.CreateLog($"User Requested: {context.Request.Path.Value}");
+                    await logRepository.AddAsync(log);
                 }
             }
             
