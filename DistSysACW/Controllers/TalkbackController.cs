@@ -31,12 +31,30 @@ namespace DistSysACW.Controllers
         }
 
         [HttpGet("Sort")]
-        public IActionResult Get([FromQuery]int[] integers)
+        public IActionResult Get([FromQuery]string[] integers)
         {
+            
             #region TASK1
 
-            Array.Sort(integers);
-            return Ok(integers);
+            var numbers = new List<int>();
+
+            foreach (var item in integers)
+            {
+                int num;
+                if(int.TryParse(item, out num))
+                {
+                    numbers.Add(num);
+                }
+                else
+                {
+                    return BadRequest("Bad Request");
+                }
+            }
+
+            numbers.Sort();
+
+
+            return Ok(numbers);
 
             #endregion
         }

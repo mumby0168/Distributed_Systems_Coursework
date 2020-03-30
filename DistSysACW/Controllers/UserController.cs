@@ -10,6 +10,7 @@ using DistSysACW.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query.ExpressionTranslators;
 
 namespace DistSysACW.Controllers
 {
@@ -55,7 +56,8 @@ namespace DistSysACW.Controllers
             string key = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             return Ok(await _userService.RemoveUser(username, key));
         }
-
+        
+        [Authorize(Roles = Roles.Admin)]
         [HttpPost("ChangeRole")]
         public async Task<IActionResult> ChangeRole([FromBody] ChangeRoleDto dto)
         {

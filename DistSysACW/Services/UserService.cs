@@ -13,10 +13,10 @@ namespace DistSysACW.Services
         private readonly IUserRepository _repository;
 
         private const string CheckUserTrueResponse =
-            "True - User Does Exist! Did you mean to do a POST to create a new user?";
+            "\"True - User Does Exist! Did you mean to do a POST to create a new user?\"";
 
         private const string CheckUserFalseResponse =
-            "False - User Does Not Exist! Did you mean to do a POST to create a new user?";
+            "\"False - User Does Not Exist! Did you mean to do a POST to create a new user?\"";
 
         public UserService(IUserRepository repository)
         {

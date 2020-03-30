@@ -31,6 +31,7 @@ namespace DistSysACW.Controllers
             return Ok($"Hello {username}");
         }
 
+        [Authorize(Roles = Roles.All)]
         [HttpGet("sha1")]
         public IActionResult Sha1([FromQuery]string message)
         {
@@ -50,6 +51,7 @@ namespace DistSysACW.Controllers
 
         }
         
+        [Authorize(Roles = Roles.All)]
         [HttpGet("sha256")]
         public IActionResult Sha256([FromQuery]string message)
         {
