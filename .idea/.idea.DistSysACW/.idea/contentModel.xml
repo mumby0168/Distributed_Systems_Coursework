@@ -35,9 +35,14 @@
         <e p="Migrations" t="Include">
           <e p="20200227090129_CreatedUserTable.cs" t="Include" />
           <e p="20200227090129_CreatedUserTable.Designer.cs" t="Include" />
+          <e p="20200325170700_AddedLog.cs" t="Include" />
+          <e p="20200325170700_AddedLog.Designer.cs" t="Include" />
+          <e p="20200326084100_LogDbSet.cs" t="Include" />
+          <e p="20200326084100_LogDbSet.Designer.cs" t="Include" />
           <e p="UserContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
+          <e p="Log.cs" t="Include" />
           <e p="User.cs" t="Include" />
           <e p="UserContext.cs" t="Include" />
           <e p="UserRole.cs" t="Include" />
@@ -58,7 +63,9 @@
           <e p="launchSettings.json" t="Include" />
         </e>
         <e p="Repositorys" t="Include">
+          <e p="ILogRepository.cs" t="Include" />
           <e p="IUserRepository.cs" t="Include" />
+          <e p="LogRepository.cs" t="Include" />
           <e p="UserRepository.cs" t="Include" />
         </e>
         <e p="Services" t="Include">
@@ -98,6 +105,10 @@
           </e>
         </e>
         <e p="Program.cs" t="Include" />
+        <e p="Services" t="Include">
+          <e p="AesEncryptionService.cs" t="Include" />
+          <e p="RsaEncryptionService.cs" t="Include" />
+        </e>
       </e>
       <e p="packages" t="ExcludeRecursive" />
     </e>

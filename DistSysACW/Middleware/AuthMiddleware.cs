@@ -44,6 +44,7 @@ namespace DistSysACW.Middleware
                     var name = new Claim(ClaimTypes.Name, user.Username);
                     var keyClaim = new Claim(ClaimTypes.NameIdentifier, stringKey);
                     context.User.AddIdentity(new ClaimsIdentity(new []{claim, name, keyClaim}));
+                    
                     var log = user.CreateLog($"User Requested: {context.Request.Path.Value}");
                     await logRepository.AddAsync(log);
                 }

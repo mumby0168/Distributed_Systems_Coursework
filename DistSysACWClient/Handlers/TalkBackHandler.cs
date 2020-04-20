@@ -47,6 +47,7 @@ namespace DistSysACWClient
                 {
                     query.Append($"integers={num}&");
                 }
+                Console.WriteLine("... please wait");
                 var result = await _client.GetResultAsStringAsync($"{_address}/talkback/sort/?{query}");
                 if(result.StatusCode == HttpStatusCode.OK)
                     Console.WriteLine(result.Data);

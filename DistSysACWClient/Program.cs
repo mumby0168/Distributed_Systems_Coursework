@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using DistSysACWClient.Services;
 
 namespace DistSysACWClient
 {
@@ -19,10 +20,12 @@ namespace DistSysACWClient
         
         static async Task Main(string[] args)
         {
+            var aes = new AesEncryptionService();
+            var rsa = new RsaEncryptionService();
             const string address = "http://localhost:5000/api";
             var talkBackHandler = new TalkBackHandler(address);
             var userHandler = new UserHandler(address);
-            var protectedHandler = new ProtectedHandler(address);
+            var protectedHandler = new ProtectedHandler(address, rsa, aes);
             Console.WriteLine("Hello. What would you like to do?");
             var input = Console.ReadLine();
             bool handled = false;
@@ -77,6 +80,12 @@ namespace DistSysACWClient
                 if (input.Contains("Protected SHA256"))
                 {
                     await protectedHandler.Sha256(input);
+                    handled = true;
+                }
+
+                if (input.Contains("Protected AddFifty"))
+                {
+                    await protectedHandler.Fifty(input);
                     handled = true;
                 }
 
